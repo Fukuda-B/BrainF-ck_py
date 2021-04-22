@@ -10,7 +10,7 @@ Windows, Python:
 py BrainF-ck.py
 ```
     
-If you want to input your own BrainF*cken source code, rewrite _INPUT in "BrainF-ck.py".  
+If you want to input your own BrainF*cken source code, rewrite _INPUT in [BrainF-ck.py](./BrainF-ck.py).  
   
 ### Debug option
 If you set the debug option to 1, you will get the following step execution result.  
