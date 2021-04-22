@@ -88,7 +88,7 @@ class BrainFuck():
             result += chr(out[i])
 
         # 出力, エラー, 結果,
-        # 展開後のコード, ステップ数
+        # 展開後のコード, ステップ数, ステップデバッグ
         return result, Error, out,\
         tx, i, debug
 
