@@ -101,4 +101,4 @@ class BrainFuck():
 inputs = str(input())
 bfc = BrainFuck()
 res = bfc.bf(inputs, 1)
-print(res[5])
+print(res[0])
