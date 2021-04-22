@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 BrainF-ck.py
 
@@ -23,7 +22,7 @@ Decrementing 0 will set it to 255.
 import io
 import sys
 _INPUT = """\
-++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.BISGOD
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.B
 """
 sys.stdin = io.StringIO(_INPUT)
 
@@ -35,13 +34,13 @@ class BrainFuck():
     # コンパイラ本体
     def bf(self, tx:str):
         """Exec BrainF*ck"""
-        tx = BrainFuck.origin(self, tx)
-        shift = 0 # 
+        tx = BrainFuck.origin(self, tx) # コメントなしのコード
+        shift = 0 # ポインタ保持変数
         maxShift = 0
         arr = [0]
-        out = []
+        out = [] # 出力
         Error = ""
-        i = 0
+        i = 0 # コードの解析位置
         while 1:
             vs = str(tx[i])
             if vs == '+': # 255未満ならインクリメント、255以上なら0
@@ -65,20 +64,22 @@ class BrainFuck():
                     s_ptr, e_ptr = i, 0 # 開始ポインタ, 終了ポインタ
                     l_cnt = 0 # ループカウンタ
                     while(c_cnt != 0 or l_cnt == 0):
-                        vvs = tx[i+l_cnt]
+                        vvs = tx[i+l_cnt] # コード解析用
                         if vvs == '[': c_cnt += 1
                         if vvs == ']': c_cnt -= 1
                         l_cnt += 1
-                        if i+l_cnt >= len(tx):
+                        if i+l_cnt > len(tx):
                             Error = "Corresponding brackets are missing."
                             break
-                    e_ptr = shift + l_cnt
+                    e_ptr = i + l_cnt
                     if e_ptr > 0:
                         for j in range(arr[shift]):
-                            res_loop += tx[(shift+1):(e_ptr-1)]
-                    tx = str(tx[:(s_ptr-1)]) + str(res_loop) + str(tx[(e_ptr+1):])
-                    print(s_ptr)
+                            res_loop += tx[(i+1):(e_ptr-1)]
+                    tx = str(tx[:(s_ptr)]) + str(res_loop) + str(tx[(e_ptr):]) # コード展開
+                    i -= 1 # コード展開により "[" 1命令文減るため、戻す
             i += 1
+            print(tx, arr, i)
+            # print(tx[i], arr, arr[shift], "||", tx[i+1])
             if i >= len(tx): break
             # elif vs == ',':
 
@@ -92,5 +93,6 @@ class BrainFuck():
 # ----- Exec
 
 inputs = str(input())
-
-print(BrainFuck().bf(inputs))
+bfc = BrainFuck()
+res = bfc.bf(inputs)
+print(res[0])
