@@ -22,7 +22,8 @@ Decrementing 0 will set it to 255.
 import io
 import sys
 _INPUT = """\
-++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.B
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.
+
 """
 sys.stdin = io.StringIO(_INPUT)
 
@@ -31,8 +32,8 @@ sys.stdin = io.StringIO(_INPUT)
 
 class BrainFuck():
 
-    # コンパイラ本体
-    def bf(self, tx:str):
+    # self, ソースコード, デバッグオプション
+    def bf(self, tx:str, option):
         """Exec BrainF*ck"""
         tx = BrainFuck.origin(self, tx) # コメントなしのコード
         shift = 0 # ポインタ保持変数
@@ -41,7 +42,11 @@ class BrainFuck():
         out = [] # 出力
         Error = ""
         i = 0 # コードの解析位置
+        debug = "" # ステップデバッグ
         while 1:
+
+            if option == 1: debug += str(tx[i])+" @"+str(shift)+" "+str(arr)+"\n" # Debug
+    
             vs = str(tx[i])
             if vs == '+': # 255未満ならインクリメント、255以上なら0
                 arr[shift] += 1 if arr[shift] < 255 else 0
@@ -78,13 +83,20 @@ class BrainFuck():
                     tx = str(tx[:(s_ptr)]) + str(res_loop) + str(tx[(e_ptr):]) # コード展開
                     i -= 1 # コード展開により "[" 1命令文減るため、戻す
             i += 1
-            print(tx, arr, i)
+            # print(tx, arr, i)
             # print(tx[i], arr, arr[shift], "||", tx[i+1])
             if i >= len(tx): break
             # elif vs == ',':
 
-        result = out
-        return result, Error
+        # ASCII Decode
+        result = ""
+        for i in range(len(out)):
+            result += chr(out[i])
+
+        # 出力, エラー, 結果,
+        # 展開後のコード, ステップ数
+        return result, Error, out,\
+        tx, i, debug
 
     # コメント削除
     def origin(self, tx):
@@ -94,5 +106,5 @@ class BrainFuck():
 
 inputs = str(input())
 bfc = BrainFuck()
-res = bfc.bf(inputs)
+res = bfc.bf(inputs, 1)
 print(res[0])
