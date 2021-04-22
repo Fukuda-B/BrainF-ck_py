@@ -3,12 +3,6 @@ BrainF-ck.py
 
 [ Compiler specification ]
 Based on Brainfuck (bf20041219),
-with some memory improvements and changes for Discord implementation.
-Unfortunately, BrainCrash is not supported.
-
-Reference:
-http://www.muppetlabs.com/~breadbox/bf/
-https://en.wikipedia.org/wiki/Brainfuck
 
 Characteristic behavior
 Incrementing 255 will set it to 0.
@@ -107,4 +101,4 @@ class BrainFuck():
 inputs = str(input())
 bfc = BrainFuck()
 res = bfc.bf(inputs, 1)
-print(res[0])
+print(res[5])
