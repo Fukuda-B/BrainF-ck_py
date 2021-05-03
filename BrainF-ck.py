@@ -28,21 +28,30 @@ class BrainFuck():
         self.parsed = "" # parsed code
         self.code = BrainFuck.origin(self, code) # no comment code
         self.option = option # debug option
-        self.out = [] # output string
         self.error = "" # output error
         self.arr = [0] # memory value
         self.maxShift = 0 # max pointer position
         self.shift = 0 # pointer position
         self.i = 0 # counter
         self.debug = [] # debug result
+        self.out = [] # output (list)
+        self.out_asc = "" # output string
 
     def bf_main(self, code:str):
         """ Exec BrainF*ck """
         i, tx, arr, shift = \
             0, code, self.arr, self.shift
+        if not tx: return
         while 1:
-            if self.option: self.debug.append(f'{tx[i]}" @{self.shift} {self.arr}"') # debug
-            if not tx[i] == '[' and not tx[i] == ']': self.parsed += tx[i]
+            if self.option == 1:
+                self.debug.append(f'{tx[i]} @{self.shift} {self.arr}') # debug
+                if tx[i] != '[' and tx[i] != ']': self.parsed += tx[i]
+            elif self.option == 2:
+                self.debug.append(f'{tx[i]} @{self.shift} {self.arr} {i} {tx}') # debug
+                if tx[i] != '[' and tx[i] != ']': self.parsed += tx[i]          
+            elif self.option == 3:
+                self.debug.append(f'{tx[i]} @{self.shift}/{shift} {self.arr}/{arr} {i} {tx}') # full debug
+                if tx[i] != '[' and tx[i] != ']': self.parsed += tx[i]          
 
             vs = str(tx[i])
             if vs == '+': self.arr[self.shift] = (self.arr[self.shift]+1) if self.arr[self.shift] < 255 else 0 # 255未満ならインクリメント、255以上なら0
@@ -68,20 +77,34 @@ class BrainFuck():
                     if i+l_cnt > len(tx):
                         self.error = ' ] are missing.'
                         break
-
-                while self.arr[self.shift] != 0:
+                
+                while self.arr[self.shift] > 1:
                     self.arr = BrainFuck.bf_main(self, tx[i+1:i+l_cnt-1])
-                print(l_cnt ,self.i, len(tx))
+                    # print(self.arr)
+                    # print(i, tx)
+
             i += 1
             if i >= len(tx):
                 self.i += i
                 break
         return self.arr
 
+    def bf_res(self):
+        o_debug = '\n'.join(self.debug)
+        return f'code:\n{self.code}\n\noutput:\n{self.out_asc}\n\nerror:\n{self.error}\n\nparsed:\n{self.parsed}\n\ndebug: mode={self.option}\n{o_debug}'
+
     # self, ソースコード, デバッグオプション
     def bf(self):
         """Exec BrainF*ck"""
         res = BrainFuck.bf_main(self, self.code)
+        buf = []
+        for i in self.out:
+            buf.append(chr(i))
+        self.out_asc = ''.join(buf)
+
+        if self.option:
+            outputs = open('Debug.txt', mode='w')
+            outputs.write(BrainFuck.bf_res(self))
 
     # コメント削除
     def origin(self, tx):
@@ -89,12 +112,6 @@ class BrainFuck():
 
 # ----- Exec
 
-inputs = str(input())
-bfc = BrainFuck(inputs, 1)
-bfc.bf()
-print(bfc.out)
-
-
-# -----
-if __name__ == '__main__':
-    pass
+# inputs = str(input())
+inputs = open('Input.txt').read()
+BrainFuck(inputs, 2).bf()
