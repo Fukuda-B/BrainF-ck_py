@@ -96,11 +96,10 @@ class BrainFuck():
             buf.append(chr(i))
         self.out_asc = ''.join(buf)
 
+        outputs = open('Debug.txt', mode='w')
         if self.option:
-            outputs = open('Debug.txt', mode='w')
             outputs.write(BrainFuck.bf_res(self))
         else:
-            outputs = open('Debug.txt', mode='w')
             outputs.write(self.out_asc)
 
     # delete comment
