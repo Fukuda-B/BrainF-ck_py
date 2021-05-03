@@ -36,4 +36,4 @@ code @pointer [Array]
 --- | ---
 | "" | Excellent! There is no error! |
 | "Out of range of array Error" | An array with a negative subscript was referenced. |
-| "\] are missing." | The "\[" loop did not complete. |
+| " \] are missing." | The "\[" loop did not complete. |
