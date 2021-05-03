@@ -93,7 +93,6 @@ class BrainFuck():
         o_debug = '\n'.join(self.debug)
         return f'code:\n{self.code}\n\noutput:\n{self.out_asc}\n\nerror:\n{self.error}\n\nparsed:\n{self.parsed}\n\ndebug: mode={self.option}\n{o_debug}'
 
-    # self, ソースコード, デバッグオプション
     def bf(self):
         """Exec BrainF*ck"""
         res = BrainFuck.bf_main(self, self.code)
@@ -106,7 +105,7 @@ class BrainFuck():
             outputs = open('Debug.txt', mode='w')
             outputs.write(BrainFuck.bf_res(self))
 
-    # コメント削除
+    # delete comment
     def origin(self, tx):
         return ''.join(filter(lambda x: x in ['.', ',', '[', ']', '>', '<', '+', '-'], tx))
 
