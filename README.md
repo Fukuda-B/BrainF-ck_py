@@ -83,7 +83,7 @@ command @pointer [Array]
 - @3 [0, 10, 30, 67, 100] 48 ++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.
 . @3 [0, 10, 30, 66, 100] 49 ++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.
 ...
-command @pointer [Array] readingPos code(In execttuion loop)
+command @pointer [Array] readingPos code
 ```
 
 ##### option = 3
@@ -97,6 +97,6 @@ command @pointer [Array] readingPos code(In execttuion loop)
 - @3/0 [0, 10, 30, 67, 100]/[0, 10, 30, 67, 100] 48 ++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.
 . @3/0 [0, 10, 30, 66, 100]/[0, 10, 30, 66, 100] 49 ++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>----.
 ...
-command @pointer/pointer(In execution loop) [Array]/[Array](In execttuion loop) readingPos code(In execttuion loop)
+command @pointer/pointer(In execution loop) [Array]/[Array](In execttuion loop) readingPos code
 ```
 
