@@ -98,5 +98,3 @@ print(bfc.out)
 # -----
 if __name__ == '__main__':
     pass
-nputs, 1)
-print(res[0])
