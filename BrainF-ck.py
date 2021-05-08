@@ -43,15 +43,10 @@ class BrainFuck():
             0, code, self.arr, self.shift
         if not tx: return
         while 1:
-            if self.option == 1:
-                self.debug.append(f'{tx[i]} @{self.shift} {self.arr}') # debug
-                if tx[i] != '[' and tx[i] != ']': self.parsed += tx[i]
-            elif self.option == 2:
-                self.debug.append(f'{tx[i]} @{self.shift} {self.arr} {i} {tx}') # debug
-                if tx[i] != '[' and tx[i] != ']': self.parsed += tx[i]          
-            elif self.option == 3:
-                self.debug.append(f'{tx[i]} @{self.shift}/{shift} {self.arr}/{arr} {i} {tx}') # full debug
-                if tx[i] != '[' and tx[i] != ']': self.parsed += tx[i]          
+            if self.option == 1: self.debug.append(f'{tx[i]} @{self.shift} {self.arr}') # debug
+            elif self.option == 2: self.debug.append(f'{tx[i]} @{self.shift} {self.arr} {i} {tx}') # debug
+            elif self.option == 3: self.debug.append(f'{tx[i]} @{self.shift}/{shift} {self.arr}/{arr} {i} {tx}') # full debug
+            if tx[i] != '[' and tx[i] != ']': self.parsed += tx[i]          
 
             vs = str(tx[i])
             if vs == '+': self.arr[self.shift] = (self.arr[self.shift]+1) if self.arr[self.shift] < 255 else 0 # 255未満ならインクリメント、255以上なら0
@@ -101,9 +96,11 @@ class BrainFuck():
             buf.append(chr(i))
         self.out_asc = ''.join(buf)
 
+        outputs = open('Debug.txt', mode='w')
         if self.option:
-            outputs = open('Debug.txt', mode='w')
             outputs.write(BrainFuck.bf_res(self))
+        else:
+            outputs.write(self.out_asc)
 
     # delete comment
     def origin(self, tx):
@@ -112,5 +109,5 @@ class BrainFuck():
 # ----- Exec
 
 # inputs = str(input())
-inputs = open('Input.txt').read()
+inputs = open('Input.bf').read()
 BrainFuck(inputs, 2).bf()
