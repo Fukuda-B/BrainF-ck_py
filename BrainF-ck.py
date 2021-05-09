@@ -109,5 +109,5 @@ class BrainFuck():
 # ----- Exec
 
 # inputs = str(input())
-inputs = open('Input.bf').read()
+inputs = open('./data/Input_B.bf').read()
 BrainFuck(inputs, 2).bf()
