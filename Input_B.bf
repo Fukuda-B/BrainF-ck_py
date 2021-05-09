@@ -13,8 +13,7 @@ int main() {
         u++ ? d++ | t +> g | h++ ? i++;
         y++ ? c++ : d++ | p << q << d - b;
     ]}
-    o >> g > l--;
-    s--;
+    if (o >> g > l--) s--;
     while (b == 1011) {
         printf(b.d);
         x < y || o++;
