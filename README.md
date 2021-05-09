@@ -5,7 +5,7 @@ Brainf*ck interpreter by python
 
 ### Usage
 
-Save your Brainf*ck program with the name [Input.bf](./Input.bf).  
+Save your Brainf*ck program with the name [./data/Input.bf](./data/Input.bf).  
 When you run BrainF-ck.py, you will see the output results in [Debug.txt](Debug.txt).  
 
 Windows, Python: 
