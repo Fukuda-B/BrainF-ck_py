@@ -4,6 +4,8 @@ typedef long long ll;
 
 int main() {
     int god = 1011;
+    int a = b = bb = bbb = c = d = e = f = g = h = i = j = k = 11;
+    int l = m = n = o = p = q = r = s = t = u = v = w = x = y = z = 2;
     b++ ? bb++ ? bbb++ ? b+bb+bbb | god++;
     for {[
         c> d+> d;
