@@ -25,5 +25,5 @@ int main() {
     god = c + o.b--;
     b-- | k-- ? u-- ? g--;
     i - b.bb < c + r.l.m;
-    printf(b);
+    printf('B?')
 }
