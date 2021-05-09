@@ -95,12 +95,8 @@ class BrainFuck():
         for i in self.out:
             buf.append(chr(i))
         self.out_asc = ''.join(buf)
-
-        outputs = open('Debug.txt', mode='w')
-        if self.option:
-            outputs.write(BrainFuck.bf_res(self))
-        else:
-            outputs.write(self.out_asc)
+        if self.option == 4: self.debug = f'Output: {self.out_asc}\nError: {self.error}\nArray: {self.arr}\nParsed: {self.parsed}\nStep: {len(self.parsed)}'
+        return self
 
     # delete comment
     def origin(self, tx):
@@ -108,6 +104,21 @@ class BrainFuck():
 
 # ----- Exec
 
-# inputs = str(input())
-inputs = open('./data/Input_B.bf').read()
-BrainFuck(inputs, 2).bf()
+# i_tx = str(input())
+
+inputs = open('./data/Input_B.bf')
+i_tx = inputs.read()
+
+bfc = BrainFuck(i_tx, 2).bf()
+print(bfc.out_asc)
+inputs.close()
+
+
+outputs = open('Debug.txt', mode='w')
+if bfc.option > 0 and bfc.option < 4:
+    outputs.write(BrainFuck.bf_res(bfc))
+elif bfc.option == 4:
+    outputs.write(bfc.debug)
+else:
+    outputs.write(bfc.out_asc)
+outputs.close()
