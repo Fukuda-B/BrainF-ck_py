@@ -7,7 +7,7 @@ int main() {
     int a = b = bb = bbb = c = d = e = f = g = h = i = j = k = 11;
     int l = m = n = o = p = q = r = s = t = u = v = w = x = y = z = 2;
     b++ ? bb++ ? bbb++ ? b+bb+bbb | god++;
-    for {[
+    for (;o;) {[
         c> d+> d;
         x++ ( f +> e ) { w++ }
         u++ ? d++ | t +> g | h++ ? i++;

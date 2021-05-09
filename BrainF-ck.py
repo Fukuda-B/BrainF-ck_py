@@ -43,6 +43,7 @@ class BrainFuck():
             0, code, self.arr, self.shift
         if not tx: return
         while 1:
+            # print(f'{tx[i]} @{self.shift} {self.arr} {i} {tx}')
             if self.option == 1: self.debug.append(f'{tx[i]} @{self.shift} {self.arr}') # debug
             elif self.option == 2: self.debug.append(f'{tx[i]} @{self.shift} {self.arr} {i} {tx}') # debug
             elif self.option == 3: self.debug.append(f'{tx[i]} @{self.shift}/{shift} {self.arr}/{arr} {i} {tx}') # full debug
@@ -72,11 +73,10 @@ class BrainFuck():
                     if i+l_cnt > len(tx):
                         self.error = ' ] are missing.'
                         break
-                
-                while self.arr[self.shift] > 1:
+
+                while self.arr[self.shift] > 0:
                     self.arr = BrainFuck.bf_main(self, tx[i+1:i+l_cnt-1])
-                    # print(self.arr)
-                    # print(i, tx)
+                i += l_cnt-1
 
             i += 1
             if i >= len(tx):
