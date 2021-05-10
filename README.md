@@ -23,8 +23,9 @@ py BrainF-ck.py
 | Return | Description |
 --- | ---
 | "" | Excellent! There is no error! |
-| "Out of range of array Error" | An array with a negative subscript was referenced. |
-| " \] are missing." | The "\[" loop did not complete. |
+| Out of range of array Error | An array with a negative subscript was referenced. |
+|  \] are missing. | The "\[" loop did not complete. |
+| The loop limit has been exceeded. | You can change limit value with self.limit |
 
 
 ### Debug option output example
